@@ -1,0 +1,170 @@
+#include <HID-Project.h>
+#include <HID-Settings.h>
+
+/*
+ * Must Change the following in Order to Work
+ *
+ * Line 84 "VOLUMENAMEHERE" - Change to your Volume
+ * Line 101 "ADMINACCOUNTHERE" - Change to your Local User Account
+ * Line 104 "PASSWORDHERE" - Change toy our Local User Accounts Password
+ */
+
+/*
+ * Pre Installation : Option Boot
+ * 
+ * Process begins automatically, once plugged in, a minor delay of 5 seconds.
+ * Computer Must be connected to the internet in order to work.
+ * Computer Must be booted with Power + Option in order to work.
+ * At this screen, microcontroller takes over, selects & Holds CMD+R to navigate to recovery screen
+ */
+void setup() {
+  BootKeyboard.begin();
+}
+void loop() {
+    delay(5000);
+  BootKeyboard.press(KEY_LEFT_GUI);
+  BootKeyboard.press('r');
+   delay(5000);
+  BootKeyboard.releaseAll();
+
+/*  
+ * 5 Minute Delay to allow time to recovery screen before next set of automation
+ */
+   delay(300000);
+
+/* 
+ *  Pre Installation : Recovery 
+ *   
+ * This begins the navigation to the Terminal Window
+ */
+  BootKeyboard.press(KEY_ESC);
+    delay(500);
+  BootKeyboard.releaseAll();
+  BootKeyboard.press(KEY_ESC);
+   delay(500);
+  BootKeyboard.releaseAll();
+    delay(500);
+  BootKeyboard.press(KEY_LEFT_CTRL);
+  BootKeyboard.press(KEY_F2);
+  BootKeyboard.releaseAll();
+  BootKeyboard.press(KEY_RIGHT_ARROW);
+  BootKeyboard.releaseAll();
+  BootKeyboard.press(KEY_RIGHT_ARROW);
+  BootKeyboard.releaseAll();
+  BootKeyboard.press(KEY_RIGHT_ARROW);
+  BootKeyboard.releaseAll();
+  BootKeyboard.press(KEY_RIGHT_ARROW);
+  BootKeyboard.releaseAll();
+
+  BootKeyboard.press(KEY_DOWN_ARROW);
+    delay(500);
+  BootKeyboard.releaseAll();
+  BootKeyboard.press(KEY_DOWN_ARROW);
+    delay(500);
+  BootKeyboard.releaseAll();
+  BootKeyboard.press(KEY_DOWN_ARROW);
+    delay(500);
+  BootKeyboard.press(KEY_DOWN_ARROW);
+    delay(500);
+
+  BootKeyboard.releaseAll();
+  BootKeyboard.println();
+
+
+/*  
+ * Pre Installation : Terminal
+ * 
+ * Once in terminal, it runs the following command to initiate the installation of the Packaged Software.
+ * 
+ * ***Includes:
+ * ***********: macOS Mojave 
+ * ***********: ADMIN Account
+ */
+    delay(30000);
+  BootKeyboard.println("/Volumes/VOLUMENAMEHERE/run");
+
+
+/*  
+ * 60 Minute Delay to allow for installation of Operating System & Packages Deployed at Enrollment.
+ */
+    delay(3600000);
+
+ /*  
+  * Post Installation : Login Window
+  * 
+  * The Computer is now at the login window.
+  * Enters ADMIN Credentials to login.
+  */
+  BootKeyboard.press(KEY_LEFT_ARROW);
+    delay(10000);
+  BootKeyboard.releaseAll();
+  BootKeyboard.println("ADMINACCOUNTHERE");
+  BootKeyboard.releaseAll();
+    delay (1000);
+  BootKeyboard.println("PASSWORDHERE");
+  BootKeyboard.releaseAll();
+    delay (500);
+  BootKeyboard.press(KEY_RETURN);
+  
+  BootKeyboard.releaseAll();
+  
+/*  
+ * 5 Minute Delay to allow time for login to desktop
+ */
+    delay(300000);
+
+/*  
+ * Post Installation : Desktop
+ * 
+ * The computer is now at the Desktop.
+ * The following commands navigate to the Apple Menu -> System Preferences -> Profiles & Authorizes the UAMDM Profile.
+ */
+    delay(5000);  
+  BootKeyboard.press(KEY_LEFT_CTRL);
+  BootKeyboard.press(KEY_F2);
+    delay(500);
+  BootKeyboard.releaseAll();
+    delay(500);
+  BootKeyboard.press(KEY_DOWN_ARROW);
+    delay(500);
+  BootKeyboard.releaseAll();
+  BootKeyboard.press(KEY_DOWN_ARROW);
+  BootKeyboard.releaseAll();
+    delay(500);
+  BootKeyboard.press(KEY_DOWN_ARROW);
+  BootKeyboard.releaseAll();
+    delay(500);
+  BootKeyboard.press(KEY_RETURN);
+  BootKeyboard.releaseAll();
+    delay(5000);
+  BootKeyboard.println("Profiles");
+    delay(5000);
+  BootKeyboard.press(KEY_RETURN);
+  BootKeyboard.releaseAll();
+    delay(3000);
+  BootKeyboard.press(KEY_LEFT_CTRL);
+  BootKeyboard.press(KEY_F7);
+    delay(3000);
+  BootKeyboard.releaseAll();
+  BootKeyboard.press(KEY_TAB);
+  BootKeyboard.releaseAll();
+     delay(3000);
+  BootKeyboard.press(KEY_TAB);
+  BootKeyboard.releaseAll();
+    delay (3000);
+  BootKeyboard.press(0x20);
+  BootKeyboard.releaseAll();
+    delay(5000);
+  BootKeyboard.press(KEY_TAB);
+  BootKeyboard.releaseAll();
+    delay(3000);
+  BootKeyboard.press(0x20);
+  BootKeyboard.releaseAll();
+    delay(5000);
+  BootKeyboard.releaseAll();
+  BootKeyboard.press(KEY_LEFT_GUI);
+  BootKeyboard.press('q');
+    delay(100);
+  
+  while (1);
+}
